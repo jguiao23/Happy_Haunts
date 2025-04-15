@@ -9,6 +9,7 @@ let barImg;
 let homeImg;
 let bunDirty;
 let img,mirror,mirrorImage;
+let 
 
 function preload(){
   bunOg = loadImage('allBun/Bun_Original.png');
@@ -17,10 +18,11 @@ function preload(){
   candleImage = loadImage('assets/candle.png');
   homeImg = loadImage("assets/m_home.png");
   bunDirty = loadImage("allBun/bun_dirty.png");
+  
 }
 
 function setup() {
-   createCanvas(600, 600);
+   let canvas = createCanvas(600, 600);
 canvas.parent('HappyHaunts');  
   
   // Gets all the dialogue array into a function
@@ -81,7 +83,6 @@ let chapterMirror = getChapterMirror();
 
 function draw() {
   background(220);
-  // themesong.play();
 
   if(gameState=== "novel"){
     push();
