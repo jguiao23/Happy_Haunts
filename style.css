@@ -1,22 +1,31 @@
 html, body {
   margin: 0;
   padding: 0;
-  color: white;
-  background-color: rgb(30, 30, 30);
-}
-
-canvas {
+  /* color:rgb(221, 8, 228); */
+  background-color:#605770;
+ 
+ 
+ }
+ 
+ 
+ canvas {
   margin:auto;
   display: block;
-}
-h1{
+ }
+ 
+ 
+ h1{
   text-align: center;
-  
-  }
-  
-  p{
-    text-align: center;
-    width: 50%;
-    margin:auto;
-    padding: 5px;
-  }
+ 
+ 
+ 
+ 
+ }
+ p{
+  -webkit-text-fill-color: #f5f4f5; /* Will override color (regardless of order) */
+  -webkit-text-stroke: 0.2px black;
+  text-align: center;
+  margin:auto;
+  width: 50%;
+  padding:5px;
+ }
