@@ -12,7 +12,7 @@ let img,mirror,mirrorImage;
 
 function preload(){
   bunOg = loadImage('allBun/Bun_Original.png');
-  themesong = loadSound('assets/Theme.wav');
+  //themesong = loadSound('assets/Theme.wav');
   lightUp = loadImage('assets/light_up.png')
   barImg = loadImage('assets/Bar.png');
   candleImage = loadImage('assets/candle.png');
@@ -21,8 +21,8 @@ function preload(){
 }
 
 function setup() {
-  let canvas = createCanvas(600, 600);
-canvas.parent('HappyHaunts');  
+   createCanvas(600, 600);
+// canvas.parent('HappyHaunts');  
   
   // Gets all the dialogue array into a function
 let chapter1 = getChapter1();
