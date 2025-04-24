@@ -27,18 +27,17 @@ class MiniGame {
 
   draw() {
     fill(0);
-    // ellipse(this.player.x, this.player.y, this.player.size);
-    textSize(18);
+    textSize(32);
+    text("Click to Shake Bun Bun Around!",width/2,100)
     fill(50);
-    text("Score: " + this.score, 50, 50);
-    if(this.score === 3){
+    if(this.score === 2){
       this.player.x += random(-4,4);
       }
-    if (this.score === 4){
+    if (this.score === 3){
       this.player.x += random(-6,6)
     }
-    if(this.score===5){
-      // this.player.y - 6;
+    if(this.score===4){
+      this.player.x += random(-20,20);
     }
     
   }

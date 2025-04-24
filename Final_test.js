@@ -1,15 +1,20 @@
+//Welcome to Happy Haunts
+// Credits to ChatGPT and Ajoconner for the source code that inspired the visual novel code
+//https://editor.p5js.org/ajoconnor/sketches/oHg0goKGj
+
 
 // Global Variables
 let gameState = "novel";
-let themesong;
+let themeSong
+let isPlaying= false;
+let soundState = 0;
 let firstNovel,minigame1,secondNovel;
 let bunOg;
 let lightUp;
 let barImg;
-let homeImg;
+let homeImg,BackGroundImg;
 let bunDirty;
-let img,mirror,mirrorImage;
-let 
+let img,mirror,mirrorImage,boxImage;
 
 function preload(){
   bunOg = loadImage('allBun/Bun_Original.png');
@@ -18,12 +23,16 @@ function preload(){
   candleImage = loadImage('assets/candle.png');
   homeImg = loadImage("assets/m_home.png");
   bunDirty = loadImage("allBun/bun_dirty.png");
-  
+  soundFormats('mp3');
+  themeSong = loadSound("assets/Theme.mp3")
+  boxImage = loadImage("assets/Spiderweb.png");
+  BackGroundImg = loadImage("assets/AnnBackground.png")
 }
 
 function setup() {
    let canvas = createCanvas(600, 600);
 canvas.parent('HappyHaunts');  
+  
   
   // Gets all the dialogue array into a function
 let chapter1 = getChapter1();
@@ -38,22 +47,36 @@ let chapterMirror = getChapterMirror();
 
 //Calling all TextScenes
   firstNovel = new TextScene(chapter1, {
+    boxImg:boxImage
   });
-  secondNovel = new TextScene(chapter2, {
+  secondNovel = new TextScene(chapter2,{
+    boxImg:boxImage
   });
   thirdNovel = new TextScene(chapter3, {
+    boxImg:boxImage
+
   });
   miniNovel = new TextScene(MerylMinigame, {
   });
   fourthNovel = new TextScene(chapter4, {
+    boxImg:boxImage
+
   });
   fifthNovel = new TextScene(chapter5, {
+    boxImg:boxImage
+
   });
   sixthNovel = new TextScene(chapter6, {
+    boxImg:boxImage
+
   });
   finalNovel = new TextScene(chapterFinal, {
+    boxImg:boxImage
+
   });
   mirrorNovel = new TextScene(chapterMirror, {
+    boxImg:boxImage
+
   });
 
 
@@ -76,6 +99,9 @@ let chapterMirror = getChapterMirror();
     DirtImage:bunDirty,
 
  })
+ annBg = new AnnBackground({
+    backGroundImg:BackGroundImg,
+ })
 
 
 
@@ -84,7 +110,16 @@ let chapterMirror = getChapterMirror();
 function draw() {
   background(220);
 
+  if(soundState === "1"){
+    soundBox();
+  }else if (soundState === "2"){
+    soundStop();
+  }
+    
+  
+
   if(gameState=== "novel"){
+    annBg.show();
     push();
   firstNovel.displayBox();
     pop();
@@ -120,8 +155,6 @@ function draw() {
     push();
     miniGame3.text();
     pop();
-    
-
   } else if(gameState === "novel4"){
     mHome.show();
     push();
@@ -155,7 +188,14 @@ function draw() {
     mirrorNovel.displayBox();
     pop();
     mirrorNovel.displayText();
+  } else if (gameState === "thankYou"){
+    background(0)
+    textAlign(CENTER);
+    fill(255);
+    textSize(32);
+    text("Thanks For Playing", width/2,height/2);
   }
+  
   
 
 
@@ -217,6 +257,7 @@ function mousePressed() {
  }else if (gameState === "novelFinal") {
     finalNovel.nextLine();
     if(finalNovel.currentIndex>=finalNovel.dialogue.length - 1){
+      gameState = "thankYou";
     }
   } 
   
@@ -686,4 +727,16 @@ function getChapterMirror(){
   },
   
 ]
+}
+
+function soundBox(){
+  if (!themeSong.isPlaying()){
+    themeSong.play();
+  }
+}
+function soundStop(){
+  themeSong.stop();
+}
+function keyPressed(){
+  soundState= key;
 }
